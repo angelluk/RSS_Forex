@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forex новости и аналитика</title>
+
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    
+    <script src="js/jquery-1.4.2.min.js"></script>
+    <script  src="http://www.google.com/jsapi"></script>
+    <script  src="js/gfeedfetcher.js"></script>
+   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+   
+  </head>
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Info News Corp.</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Forex</a></li>
+                <li><a href="#">Контакаты</a></li>
+                <li><a href="#">О нас</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Социальные сети</a></li>
+            </ul>
+        </div>
+    </div>
+
+   
+
+    <div class="container">
+        <div class="text-center  col-md-12 ">
+            <h1>Новости и аналитика Forex</h1>
+            
+             <input type="submit" value="Play" id="play"class="btn">
+             
+                <div id="rssfeed-wrap" class="well">
+                    <script type="text/javascript">
+                    var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_new")
+                    
+                    newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news");
+                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml"); 
+                    newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml"); 
+                     
+                    
+                 
+                    
+                    newsfeed.displayoptions("label  datetime snippet");
+                    newsfeed.setentrycontainer("p");
+                    newsfeed.filterfeed(10, "date");
+                    newsfeed.init();
+
+                    setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
+
+                    </script>
+                    <p><a class="darklink" href="javascript:newsfeed.init()">Refresh live blog posts</a></p>
+                    
+                </div>
+             
+        </div>
+    </div>
+
+    <div class="blog-footer">
+      <p>Сайт создал Лукьянено Алексей, используя  <a href="http://getbootstrap.com/">Bootstrap</a> Twitter <a href="https://twitter.com/Lukasus">@Lukasus</a>.</p>
+      <p>
+        <a href="#">Вверх</a>
+      </p>
+    </div>
+
+     <script>
+     $(document).ready(function(){
+         
+         
+        //setInterval(function(){newsfeed.init()}, 60000); // 
+
+        $("#rssfeeds p").css("background-color","#EAEAEA"); 
+
+
+         $("#play").click(function () {
+                   
+
+                  //   $("#rssfeeds p:eq(3)").animate({ top:'-104px'},500,"linear"); 
+
+                      $("#rssfeeds p:eq(1)").animate({ top:'180px'},500,"linear"); 
+
+                      $("#rssfeeds p:eq(3)").animate({ top:'-190px'},500,"linear"); 
+
+                    
+
+                });
+
+
+          
+                   
+
+                
+      });
+
+    </script>
+
+
+  </body>
+</html>

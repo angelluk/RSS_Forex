@@ -1,0 +1,87 @@
+/** RSS FEED **/
+.labelfield{ color:#2F0000; font-size: 90%; }
+.datefield{ color:gray; font-size: 90%; text-align:left;}
+#rssfeeds a{ color: #303147;text-decoration: none;font-weight: bold;}
+#rssfeeds{
+	
+}
+#rssfeeds p{
+ margin-bottom: 2px;
+}
+code{ color: red;}
+#blogoolafeed, #blogoolafeed a { color:white; }
+#blogoolafeed a:hover{ color:#8E7BD3; }
+#blogoolafeed ul { margin-left:-15px }
+
+#rssfeed-wrap 
+{ 	
+	/*text-align:center; 
+	margin:30px auto;
+	padding: 30px 50px;
+	background-color: #FFF;
+	width: 750px;
+	border-radius: 10px;*/
+	
+	background-color: #FFF;
+	box-shadow: inset 5px 5px 10px rgba(0,0,0,.05);
+	-webkit box-shadow: inset 5px 10px 5px rgba(0,0,0,.05);
+	-moz-box-shadow: inset 5px 5px 10px rgba(0,0,0,.05);
+}
+
+
+#rssfeed-wrap  .datefield{ /* CSS for date field of the RSS feed with id="example1" */
+	text-align:left;
+}
+
+#rssfeed-wrap  p{ /* CSS for date field of the RSS feed with id="example1" */
+	text-align:left;
+	margin: 10px;
+	position: relative;
+	min-height: 80px;
+}
+
+
+body{
+	
+	
+	background: #F5F5F5 url("../img/fon3.jpg");
+	background-attachment: fixed;
+	background-size:cover;
+}
+
+
+.text-center h1{
+	margin-top: 40px;
+	margin-bottom: 20px;
+	color:#F3F3FE;
+	
+
+}
+
+.container{
+
+	max-width: 750px;
+	text-align:center; 
+	margin:30px auto;
+}
+
+.navbar-collapse{
+	box-shadow: 0px 5px 10px #888888;
+	-webkit box-shadow:0px 5px 10px #888888;
+	-moz-box-shadow: 0px 5px 10px #888888;
+}
+
+
+.blog-footer {
+	padding: 30px 0;
+	color: #999;
+	text-align: center;
+	background-color: #f8f8f8;
+	border-top: 1px solid #e5e5e5;
+}
+
+.btn{
+			height: 50px;
+			width: 100px;
+
+		}
