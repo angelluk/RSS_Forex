@@ -8,6 +8,7 @@
 #rssfeeds p{
  margin-bottom: 2px;
 }
+
 code{ color: red;}
 #blogoolafeed, #blogoolafeed a { color:white; }
 #blogoolafeed a:hover{ color:#8E7BD3; }
@@ -33,34 +34,64 @@ code{ color: red;}
 	text-align:left;
 }
 
-#rssfeed-wrap  p{ /* CSS for date field of the RSS feed with id="example1" */
-	text-align:left;
-	margin: 10px;
-	position: relative;
-	min-height: 80px;
+#rssfeed-wrap  ul{
+	margin-left: -43px;
+	padding-top: 5px;
 }
 
+#rssfeed-wrap  li{ /* CSS for date field of the RSS feed with id="example1" */
+	text-align:left;
+	margin: 10px;
+	padding: 0 10px;
+	position: relative;
+	min-height: 40px;
+	list-style-type: none;
+	
+}
 
+#rssfeed-wrap  li:hover{ /* CSS for date field of the RSS feed with id="example1" */
+	
+	text-decoration: underline;
+	border: 1px #306161 solid;
+
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	
+}
+
+.rating{
+	
+	float: right;
+
+	font-size: 16px;
+	font-weight: bolder;
+	color: #818181;
+
+
+}
 body{
 	
-	
-	background: #F5F5F5 url("../img/fon3.jpg");
+	background: #DBE3DC url("../img/BisFon.jpg");
 	background-attachment: fixed;
 	background-size:cover;
 }
 
 
-.text-center h1{
-	margin-top: 40px;
+ h1{
+	margin-top: 60px;
 	margin-bottom: 20px;
-	color:#F3F3FE;
-	
+	color:#306161;
+	font-size: 15px;
+	font-weight: bolder;
+	text-align: left;
+	text-shadow: 1px 2px #F5FAFA;
 
 }
 
 .container{
 
-	max-width: 750px;
+	max-width: 940px;
 	text-align:center; 
 	margin:30px auto;
 }
@@ -71,6 +102,10 @@ body{
 	-moz-box-shadow: 0px 5px 10px #888888;
 }
 
+.navbar-default .navbar-brand {
+	color:#306161;
+	font-weight: bolder;
+}
 
 .blog-footer {
 	padding: 30px 0;
@@ -80,8 +115,32 @@ body{
 	border-top: 1px solid #e5e5e5;
 }
 
-.btn{
-			height: 50px;
-			width: 100px;
+.blog-footer ul{
+	list-style-type: none;
+}
 
-		}
+.blog-footer li{
+	display: inline-block;
+	
+}
+
+.blog-footer a{
+	color: #818181;
+	font-weight: 600;
+	padding: 0 20px;
+	border-right: 1px solid #999;
+}
+
+#last-href{
+	border-right: none;
+}
+
+
+.btn {
+	height: 50px;
+	width: 100px;
+}
+
+#play{
+	display: none;
+}

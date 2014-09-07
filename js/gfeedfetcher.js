@@ -102,14 +102,14 @@ gfeedfetcher.prototype._signaldownloadcomplete=function(){
 		this._displayresult(this.feeds) //display results
 }
 
-// '<span class="labelfield">['+this.feeds[i].ddlabel+']</span>'   <img src="img/'+this.feeds[i].ddlabel+'alt="Source">
+// '<span class="labelfield">['+this.feeds[i].ddlabel+']</span>'    <img src="img/'+this.feeds[i].ddlabel+'alt="Source">
 gfeedfetcher.prototype._displayresult=function(feeds){
 	var rssoutput=(this.itemcontainer=="<li>")? "<ul>\n" : ""
 	gfeedfetcher._sortarray(feeds, this.sortstring)
 	for (var i=0; i<feeds.length; i++){
-		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"
-		var itemlabel=/label/i.test(this.showoptions)? '<span class="labelfield">['+this.feeds[i].ddlabel+']</span>' : " "
-		var itemdate=gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions)
+		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"+ " &nbsp; " 
+		var itemlabel=/label/i.test(this.showoptions)? ' ': " "
+		var itemdate= gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating">72</span>'
 		var itemdescription=/description/i.test(this.showoptions)? "<br />"+feeds[i].content : /snippet/i.test(this.showoptions)? "<br />"+feeds[i].contentSnippet  : ""
 		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("<", "</") + "\n\n"
 	}
