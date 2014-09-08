@@ -50,6 +50,9 @@ code{ color: red;}
 
 #rssfeed-wrap  li:hover{ /* CSS for date field of the RSS feed with id="example1" */
 	
+	margin-top: -2px;	
+	padding-top: 11px;
+	padding-left: 9px;
 	border: 1px #306161 solid;
 
 	border-radius: 5px;
