@@ -109,7 +109,7 @@ gfeedfetcher.prototype._displayresult=function(feeds){
 	for (var i=0; i<feeds.length; i++){
 		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"+ " &nbsp; " 
 		var itemlabel=/label/i.test(this.showoptions)? ' ': " "
-		var itemdate= gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating">72</span>'
+		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating  datefield">72</span>'
 		var itemdescription=/description/i.test(this.showoptions)? "<br />"+feeds[i].content : /snippet/i.test(this.showoptions)? "<br />"+feeds[i].contentSnippet  : ""
 		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("<", "</") + "\n\n"
 	}
