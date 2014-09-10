@@ -24,9 +24,9 @@ code{ color: red;}
 	border-radius: 10px;*/
 	
 	background-color: #FFF;
-	box-shadow: inset 5px 5px 10px rgba(0,0,0,.05);
+	/*box-shadow: inset 5px 5px 10px rgba(0,0,0,.05);
 	-webkit box-shadow: inset 5px 10px 5px rgba(0,0,0,.05);
-	-moz-box-shadow: inset 5px 5px 10px rgba(0,0,0,.05);
+	-moz-box-shadow: inset 5px 5px 10px rgba(0,0,0,.05);*/
 }
 
 
@@ -35,7 +35,7 @@ code{ color: red;}
 }
 
 #rssfeed-wrap  ul{
-	margin-left: -39px;
+	margin-left: -40px;
 	padding-top: 5px;
 }
 
@@ -50,15 +50,11 @@ code{ color: red;}
 
 #rssfeed-wrap  li:hover{ /* CSS for date field of the RSS feed with id="example1" */
 	
-	margin-top: -2px;	
-	padding-top: 11px;
-	padding-left: 9px;
-	border: 1px #306161 solid;
-
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
+	margin-top: 0px;	
 	
+	/*border: 1px #306161 solid;*/
+	background-color: #F8F8F8;	
+		
 }
 
 
@@ -78,21 +74,23 @@ code{ color: red;}
 
 body{
 	
-	background: #DBE3DC url("../img/BisFon.jpg");
-	background-attachment: fixed;
-	background-size:cover;
+	background: #DBE3DC url("../img/sos.png");
+	
 }
 
 
  h1{
 	margin-top: 30px;
 	margin-bottom: 7px;
-	color:#306161;
+	color:#555;
 	font-size: 15px;
-	font-weight: bolder;
 	text-align: left;
-	text-shadow: 1px 2px #F5FAFA;
+}
 
+.navbar-brand{
+	padding: 6px 0 0 0;
+	margin-left: 199px;
+	margin-right: 100px;
 }
 
 .container{
@@ -108,9 +106,9 @@ body{
  }
 
 .navbar-collapse{
-	box-shadow: 0px 5px 10px #888888;
-	-webkit box-shadow:0px 5px 10px #888888;
-	-moz-box-shadow: 0px 5px 10px #888888;
+	box-shadow: 0px 3px 10px #BEBEBE;
+	-webkit box-shadow:0px 3px 10px #BEBEBE;
+	-moz-box-shadow: 0px 3px 10px #888888;
 }
 
 .navbar-default .navbar-brand {
