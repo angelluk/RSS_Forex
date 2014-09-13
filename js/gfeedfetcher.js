@@ -63,7 +63,8 @@ gfeedfetcher.prototype.init=function(){
 
 gfeedfetcher._formatdate=function(datestr, showoptions){
 	var itemdate=new Date(datestr)
-	var parseddate=(showoptions.indexOf("datetime")!=-1)? itemdate.toLocaleString() : (showoptions.indexOf("date")!=-1)? itemdate.toLocaleDateString() : (showoptions.indexOf("time")!=-1)? itemdate.toLocaleTimeString() : ""
+	//var parseddate=(showoptions.indexOf("datetime")!=-1)? itemdate.toLocaleString() : (showoptions.indexOf("date")!=-1)? itemdate.toLocaleDateString() : (showoptions.indexOf("time")!=-1)? itemdate.toLocaleTimeString() : ""
+	var parseddate = (itemdate.toLocaleTimeString() + '		' + itemdate.toLocaleDateString())
 	return "<span class='datefield'>"+parseddate+"</span>"
 }
 

@@ -11,25 +11,25 @@
     <link href="css/styles.css" rel="stylesheet">
     
     <script src="js/jquery-1.4.2.min.js"></script>
+
     <script  src="http://www.google.com/jsapi"></script>
     <script  src="js/gfeedfetcher.js"></script>
-   
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    
+       
    
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-example">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#"><img src="img/Logo.png" alt="logo"></a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar-example" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">онлайн</a></li>
                 <li><a href="#">час</a></li>
@@ -37,16 +37,24 @@
                 <li><a href="#">неделя</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Социальные сети</a></li>
-            </ul>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">CatForex <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">О рейтинге новостей</a></li>
+                      <li><a href="#">Как попасть в рейтинг</a></li>
+                      <li><a href="#">Правовая информация</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Сообщить о нарушении прав</a></li>
+                    </ul>
+                  </li>
+              </ul>
         </div>
-    </div>
+    </nav>
 
-   
-
+  
     <div class="container">
         <div class=" col-md-12 ">
-          <h1>CAT FOREX  собирает самые актуальные новости валютного рынка на основании умного рейтинга. Подробнее ...</h1>  
+          <h1>CAT FOREX  собирает самые актуальные новости валютного рынка на основании умного рейтинга. Подробнее ...<img src="img/close.png" alt="close"></h1>  
             
              <input type="submit" value="Play" id="play"class="btn">
              
@@ -57,16 +65,12 @@
                     newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news");
                     newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml"); 
                     newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml"); 
-                     
-                    
-                 
                     
                     newsfeed.displayoptions("label  datetime ");
                     newsfeed.setentrycontainer("li");
                     newsfeed.filterfeed(40, "date");
                     newsfeed.init();
                     
-
                     setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
 
                     </script>
@@ -94,21 +98,29 @@
      $(document).ready(function(){
          
          
-           $("#play").click(function () {
-                   
+        // закрытие  заголовка
+        $("h1 img").on("click",function (){
+          
+          $(this).addClass("hiddeElement");
+          $(this).parent().addClass("hiddeElement");
 
-              $("#rssfeeds li:eq(1)").animate({ top:'270px'},500,"linear"); 
+        });
 
-               $("#rssfeeds li:eq(3)").animate({ top:'-270px'},500,"linear"); 
+             $("#play").click(function () {
+                     
+                $("#rssfeeds li:eq(1)").animate({ top:'270px'},500,"linear"); 
 
-                    
-
+                 $("#rssfeeds li:eq(3)").animate({ top:'-270px'},500,"linear"); 
             });
 
      });
 
     </script>
-
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 
   </body>
 </html>
