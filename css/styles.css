@@ -163,10 +163,10 @@ h1 img:hover{
 }
 
 #play{
-	display: none;
+	display: block;
 }
 
 .hiddeElement{
 
-	visibility:hidden;
+	visibility: hidden;
 }

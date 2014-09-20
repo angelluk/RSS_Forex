@@ -12,6 +12,7 @@ function gfeedfetcher(divid, divClass, linktarget){
 	this.linktarget=linktarget || "" //link target of RSS entries
 	this.feedlabels=[] //array holding lables for each RSS feed
 	this.feedurls=[]
+	this.feedRates=[]	// рейтинг статический  RSS источников
 	this.feeds=[] //array holding combined RSS feeds' entries from Feed API (result.feed.entries)
 	this.feedsfetched=0 //number of feeds fetched
 	this.feedlimit=5
@@ -22,9 +23,10 @@ function gfeedfetcher(divid, divClass, linktarget){
 	this.itemcontainer="<li>" //default element wrapping around each RSS entry item
 }
 
-gfeedfetcher.prototype.addFeed=function(label, url){
+gfeedfetcher.prototype.addFeed=function(label, url , rate){
 	this.feedlabels[this.feedlabels.length]=label
 	this.feedurls[this.feedurls.length]=url
+	this.feedRates[this.feedRates.length]=rate   // запоняем массив rates для RSS 
 }
 
 gfeedfetcher.prototype.filterfeed=function(feedlimit, sortstr){
@@ -77,6 +79,13 @@ gfeedfetcher._sortarray=function(arr, sortstr){
 		return (fielda<fieldb)? -1 : (fielda>fieldb)? 1 : 0
 		})
 	}
+	if(sortstr=="rates" ){				// первоначальная сортировка по рейтингу сайтов
+		arr.sort(function(a,b){
+		var fielda=(+a[sortstr])
+		var fieldb=(+b[sortstr])
+		return (fielda>fieldb)? -1 : (fielda<fieldb)? 1 : 0
+	   })
+	}
 	else{ //else, sort by "publishedDate" property (using error handling, as "publishedDate" may not be a valid date str if an error has occured while getting feed
 		try{
 			arr.sort(function(a,b){return new Date(b.publishedDate)-new Date(a.publishedDate)})
@@ -92,6 +101,7 @@ gfeedfetcher.prototype._fetch_data_as_array=function(result, ddlabel){
 	}
 	for (var i=0; i<thisfeed.length; i++){ //For each entry within feed
 		result.feed.entries[i].ddlabel=ddlabel //extend it with a "ddlabel" property
+		result.feed.entries[i].rates=(this.feedRates[this.feedlabels.indexOf(ddlabel)])  // Рейтинг сайта 
 	}
 	this.feeds=this.feeds.concat(thisfeed) //add entry to array holding all feed entries
 	this._signaldownloadcomplete() //signal the retrieval of this feed as complete (and move on to next one if defined)
@@ -106,11 +116,11 @@ gfeedfetcher.prototype._signaldownloadcomplete=function(){
 // '<span class="labelfield">['+this.feeds[i].ddlabel+']</span>'    <img src="img/'+this.feeds[i].ddlabel+'alt="Source">
 gfeedfetcher.prototype._displayresult=function(feeds){
 	var rssoutput=(this.itemcontainer=="<li>")? "<ul>\n" : ""
-	gfeedfetcher._sortarray(feeds, this.sortstring)
+	gfeedfetcher._sortarray(feeds, this.sortstring)				// CОРТИРОВКА
 	for (var i=0; i<feeds.length; i++){
 		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"+ " &nbsp; " 
 		var itemlabel=/label/i.test(this.showoptions)? ' ': " "
-		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating  datefield">72</span>'
+		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating  datefield">'+(this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])+'</span>' // вывод рейтинга сайта
 		var itemdescription=/description/i.test(this.showoptions)? "<br />"+feeds[i].content : /snippet/i.test(this.showoptions)? "<br />"+feeds[i].contentSnippet  : ""
 		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("<", "</") + "\n\n"
 	}

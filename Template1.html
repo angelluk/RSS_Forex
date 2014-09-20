@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Forex новости и аналитика</title>
 
-    
+    <link rel="shortcut icon" href="img/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     
@@ -57,24 +57,41 @@
           <h1>CAT FOREX  собирает самые актуальные новости валютного рынка на основании умного рейтинга. Подробнее ...<img src="img/close.png" alt="close"></h1>  
             
              <input type="submit" value="Play" id="play"class="btn">
+
+             
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                 <div class="modal-content">
+                   <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                     <h4 class="modal-title" id="myModalLabel">Новость</h4>
+                   </div>
+                   <div class="modal-body"></div>
+                   <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+               </div>
+             </div>
              
                 <div id="rssfeed-wrap" >
                     <script type="text/javascript">
                     var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_new")
                     
-                    newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news");
-                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml"); 
-                    newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml"); 
+                    newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news","30");
+                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml","25"); 
+                    newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml","10"); 
                     
                     newsfeed.displayoptions("label  datetime ");
                     newsfeed.setentrycontainer("li");
-                    newsfeed.filterfeed(40, "date");
+                    newsfeed.filterfeed(40, "rates");
                     newsfeed.init();
                     
                     setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
 
                     </script>
-                    <p><a class="darklink" href="javascript:newsfeed.init()">Refresh live blog posts</a></p>
+                    <p><a class="darklink" href="javascript:newsfeed.init()">Обновить</a></p>
                     
                 </div>
              
@@ -82,6 +99,7 @@
     </div>
 
     <div class="blog-footer">
+    
       <ul>
         <li><a href="#">О рейтинге новостей</a></li>
         <li><a href="#">Как попасть в рейтинг</a></li>
@@ -106,12 +124,39 @@
 
         });
 
-             $("#play").click(function () {
-                     
-                $("#rssfeeds li:eq(1)").animate({ top:'270px'},500,"linear"); 
+       // поменять местами  новости
+       $("#play").click(function () {
+               
+           $("#rssfeeds li:eq(0)").animate({ 'top':'+=120px'},1500); 
+           $("#rssfeeds li:eq(3)").animate({ 'top':'-=120px'},1500); 
 
-                 $("#rssfeeds li:eq(3)").animate({ top:'-270px'},500,"linear"); 
-            });
+           $("#rssfeeds li:eq(2)").animate({ 'top':'+=80px'},1500); 
+           $("#rssfeeds li:eq(4)").animate({ 'top':'-=80px'},1500); 
+
+           $("#rssfeeds li:eq(1)").animate({ 'top':'+=400px'},1500); 
+           $("#rssfeeds li:eq(11)").animate({ 'top':'-=400px'},1500); 
+
+           
+      });
+
+       // показ диалогового окна новости
+       $("#rssfeeds").on("click",".titlefield",function (event){
+         
+        /*
+         $(this).css("background-color","red");
+
+         $('#myModal').modal({
+                        remote: "https://www.instaforex.com/ru/forex-news/1684041.html"
+                      });
+
+        $('#modal').on('hidden.bs.modal', function(){
+            $(this).remove();
+        });
+
+         //event.stopPropagation();
+         //event.pereventDefault();
+         */
+       });
 
      });
 
