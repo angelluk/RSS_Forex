@@ -37,6 +37,7 @@ code{ color: red;}
 #rssfeed-wrap  ul{
 	margin-left: -40px;
 	padding-top: 5px;
+	position: relative;
 }
 
 #rssfeed-wrap  li{ /* CSS for date field of the RSS feed with id="example1" */

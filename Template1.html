@@ -85,7 +85,7 @@
                     
                     newsfeed.displayoptions("label  datetime ");
                     newsfeed.setentrycontainer("li");
-                    newsfeed.filterfeed(40, "rates");
+                    newsfeed.filterfeed(30, "rates");
                     newsfeed.init();
                     
                     setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
@@ -113,9 +113,82 @@
     </div>
 
      <script>
+     
+     var Diff,MoveFirstIndex,MoveSecondIndex,RealFirst,RealSecond;
+
+     // функция возврата случайного числа из диапазона
+     var getRandom = function (min,max){
+        return Math.floor(Math.random()*(max-min) + min);
+
+     }
+
+     // функция  случайной аннимации
+     var Shuttle = function (len){
+
+       MoveFirstIndex = getRandom(0,len);
+       MoveSecondIndex = getRandom(0,len);
+
+       Diff = Math.abs(MoveSecondIndex-MoveFirstIndex);
+
+       RealFirst = 0;
+       RealSecond=0;
+
+     }
+
      $(document).ready(function(){
          
+      var Play = function(){
+
+
+        Shuttle(30);  // берем случайно 2 новости из 4
+
+        // по номерам вытягиваем текст
+        var Lists = $("#rssfeeds li");
+
+        
+
+        if(MoveFirstIndex !== MoveSecondIndex){
+
+         var FirstCSS = "#rssfeeds li:eq(" + MoveFirstIndex + ")";
+         var SecondCSS = "#rssfeeds li:eq(" + MoveSecondIndex + ")";
          
+         // реальное  свойтсво top         
+         var RealFirst = Lists[MoveFirstIndex].offsetTop;
+         var RealSecond = Lists[MoveSecondIndex].offsetTop;
+
+         var MovePx  = Math.abs(RealFirst-RealSecond); // разница to
+
+           if (RealFirst > RealSecond){
+
+             var FirstMove = "-="+ MovePx + "px";
+             var SecondMove = "+="+ MovePx + "px";
+             
+             var colorFirst = '#B9FFB9';
+             var colorSecond = '#FFA8A8';  
+              
+           }
+           else{
+
+             var FirstMove = "+="+ MovePx + "px";
+             var SecondMove = "-="+ MovePx + "px";
+
+             var colorFirst ='#FFA8A8';
+             var colorSecond = '#B9FFB9';   
+
+           }
+
+           var One = $(FirstCSS);
+           var Two = $(SecondCSS);
+
+           $(One).animate({ 'top': FirstMove },1500); 
+           $(Two).animate({ 'top': SecondMove },1500);
+
+           $(FirstCSS + " .rating").css('background-color', colorFirst);
+           $(SecondCSS + " .rating").css('background-color', colorSecond); 
+           
+        }
+          
+      }
         // закрытие  заголовка
         $("h1 img").on("click",function (){
           
@@ -126,39 +199,16 @@
 
        // поменять местами  новости
        $("#play").click(function () {
-               
-           $("#rssfeeds li:eq(0)").animate({ 'top':'+=120px'},1500); 
-           $("#rssfeeds li:eq(3)").animate({ 'top':'-=120px'},1500); 
-
-           $("#rssfeeds li:eq(2)").animate({ 'top':'+=80px'},1500); 
-           $("#rssfeeds li:eq(4)").animate({ 'top':'-=80px'},1500); 
-
-           $("#rssfeeds li:eq(1)").animate({ 'top':'+=400px'},1500); 
-           $("#rssfeeds li:eq(11)").animate({ 'top':'-=400px'},1500); 
-
-           
-      });
-
-       // показ диалогового окна новости
-       $("#rssfeeds").on("click",".titlefield",function (event){
          
-        /*
-         $(this).css("background-color","red");
+            setInterval(function(){Play()}, 6000); // вызов обновления раз в минуту
 
-         $('#myModal').modal({
-                        remote: "https://www.instaforex.com/ru/forex-news/1684041.html"
-                      });
-
-        $('#modal').on('hidden.bs.modal', function(){
-            $(this).remove();
+                   
         });
 
-         //event.stopPropagation();
-         //event.pereventDefault();
-         */
-       });
-
+      
      });
+
+    
 
     </script>
   
