@@ -114,99 +114,100 @@
 
      <script>
      
-     var Diff,MoveFirstIndex,MoveSecondIndex,RealFirst,RealSecond;
+   var Diff,MoveFirstIndex,MoveSecondIndex,RealFirst,RealSecond;
 
-     // функция возврата случайного числа из диапазона
-     var getRandom = function (min,max){
-        return Math.floor(Math.random()*(max-min) + min);
+        // функция возврата случайного числа из диапазона
+        var getRandom = function (min,max){
+           return Math.floor(Math.random()*(max-min) + min);
 
-     }
+        };
 
-     // функция  случайной аннимации
-     var Shuttle = function (len){
+        // функция  случайной аннимации
+        var Shuttle = function (len){
 
-       MoveFirstIndex = getRandom(0,len);
-       MoveSecondIndex = getRandom(0,len);
+          MoveFirstIndex = getRandom(0,len);
+          MoveSecondIndex = getRandom(0,len);
 
-       Diff = Math.abs(MoveSecondIndex-MoveFirstIndex);
+          Diff = Math.abs(MoveSecondIndex-MoveFirstIndex);
 
-       RealFirst = 0;
-       RealSecond=0;
+          RealFirst = 0;
+          RealSecond=0;
 
-     }
+        };
 
-     $(document).ready(function(){
-         
-      var Play = function(){
+        $(document).ready(function(){
+            
+         var Play = function(){
 
 
-        Shuttle(30);  // берем случайно 2 новости из 4
+           Shuttle(30);  // берем случайно 2 новости 
 
-        // по номерам вытягиваем текст
-        var Lists = $("#rssfeeds li");
+           // список новостей
+           var Lists = $("#rssfeeds li");
 
-        
+           var FirstMove ,SecondMove,colorFirst,colorSecond;  
 
-        if(MoveFirstIndex !== MoveSecondIndex){
+           if(MoveFirstIndex !== MoveSecondIndex){
 
-         var FirstCSS = "#rssfeeds li:eq(" + MoveFirstIndex + ")";
-         var SecondCSS = "#rssfeeds li:eq(" + MoveSecondIndex + ")";
-         
-         // реальное  свойтсво top         
-         var RealFirst = Lists[MoveFirstIndex].offsetTop;
-         var RealSecond = Lists[MoveSecondIndex].offsetTop;
+            var FirstCSS = "#rssfeeds li:eq(" + MoveFirstIndex + ")";
+            var SecondCSS = "#rssfeeds li:eq(" + MoveSecondIndex + ")";
+            
+            // реальное  свойтсво top         
+            var RealFirst = Lists[MoveFirstIndex].offsetTop;
+            var RealSecond = Lists[MoveSecondIndex].offsetTop;
 
-         var MovePx  = Math.abs(RealFirst-RealSecond); // разница to
+            var MovePx  = Math.abs(RealFirst-RealSecond); // разница to
 
-           if (RealFirst > RealSecond){
+              if (RealFirst > RealSecond){
 
-             var FirstMove = "-="+ MovePx + "px";
-             var SecondMove = "+="+ MovePx + "px";
-             
-             var colorFirst = '#B9FFB9';
-             var colorSecond = '#FFA8A8';  
+                 FirstMove = "-="+ MovePx + "px";
+                 SecondMove = "+="+ MovePx + "px";
+                
+                 colorFirst = '#B9FFB9';
+                 colorSecond = '#FFA8A8';  
+                 
+              }
+              else{
+
+                 FirstMove = "+="+ MovePx + "px";
+                 SecondMove = "-="+ MovePx + "px";
+
+                 colorFirst ='#FFA8A8';
+                 colorSecond = '#B9FFB9';   
+
+              }
+
+              var One = $(FirstCSS);
+              var Two = $(SecondCSS);
+
+              $(One).animate({ 'top': FirstMove },1500); 
+              $(Two).animate({ 'top': SecondMove },1500);
+
+              $(FirstCSS + " .rating").css('background-color', colorFirst);
+              $(SecondCSS + " .rating").css('background-color', colorSecond); 
               
            }
-           else{
+             
+         };
+           // закрытие  заголовка
+           $("h1 img").on("click",function (){
+             
+             $(this).addClass("hiddeElement");
+             $(this).parent().addClass("hiddeElement");
 
-             var FirstMove = "+="+ MovePx + "px";
-             var SecondMove = "-="+ MovePx + "px";
+           });
 
-             var colorFirst ='#FFA8A8';
-             var colorSecond = '#B9FFB9';   
+          // аннимация случайная
+          $("#play").click(function () {
+            
+               setInterval(function(){Play()}, 6000); // вызов обновления раз в минуту
 
-           }
+                      
+           });
 
-           var One = $(FirstCSS);
-           var Two = $(SecondCSS);
-
-           $(One).animate({ 'top': FirstMove },1500); 
-           $(Two).animate({ 'top': SecondMove },1500);
-
-           $(FirstCSS + " .rating").css('background-color', colorFirst);
-           $(SecondCSS + " .rating").css('background-color', colorSecond); 
-           
-        }
-          
-      }
-        // закрытие  заголовка
-        $("h1 img").on("click",function (){
-          
-          $(this).addClass("hiddeElement");
-          $(this).parent().addClass("hiddeElement");
-
-        });
-
-       // поменять местами  новости
-       $("#play").click(function () {
          
-            setInterval(function(){Play()}, 6000); // вызов обновления раз в минуту
-
-                   
         });
 
-      
-     });
 
     
 

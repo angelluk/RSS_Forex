@@ -4,7 +4,12 @@
 // Updated June 14th, 10': Fixed issue in IE where labels would sometimes be associated with the incorrect feed items
 // -------------------------------------------------------------------
 
-var gfeedfetcher_loading_image="img/indicator.gif" //Full URL to "loading" image. No need to config after this line!!
+var CurDate,MaxDate,MinDate,DateStr;				// дата публикации текущая, максимальная, минимальная 
+
+MaxDate = new Date();		// текущая дата
+MinDate = new Date();
+
+var gfeedfetcher_loading_image="img/Preloader.gif" //Full URL to "loading" image. No need to config after this line!!
 
 google.load("feeds", "1") //Load Google Ajax Feed API (version 1)
 
@@ -69,6 +74,28 @@ gfeedfetcher._formatdate=function(datestr, showoptions){
 	var parseddate = (itemdate.toLocaleTimeString() + '		' + itemdate.toLocaleDateString())
 	return "<span class='datefield'>"+parseddate+"</span>"
 }
+//**************************************** Rate_With_Date *****************************************
+function Rate_With_Date(feedArr){
+	
+	var Curfeed,feedDate,feedStr,DateOld,AjustRate;
+		
+		for (var j=0; j<feedArr.length; j++){ //For each entry within feed
+			
+			Curfeed =  feedArr[j];
+
+			feedStr = Curfeed.publishedDate; 		
+		    feedDate = new Date(feedStr); 			// текщая дата
+
+		    AjustRate = (feedDate - MinDate) / (MaxDate - MinDate);  // КОЭФФИЦИЕНТ НОВИЗНЫ (0,1)
+
+		    feedArr[j].rates  =  (+Curfeed.rates) * AjustRate;		// Коррекция рейтинга на  коэф. новизны	
+
+		}
+
+	return 	feedArr;
+
+};
+//************************************************************************************************
 
 gfeedfetcher._sortarray=function(arr, sortstr){
 	var sortstr=(sortstr=="label")? "ddlabel" : sortstr //change "label" string (if entered) to "ddlabel" instead, for internal use
@@ -80,6 +107,10 @@ gfeedfetcher._sortarray=function(arr, sortstr){
 		})
 	}
 	if(sortstr=="rates" ){				// первоначальная сортировка по рейтингу сайтов
+
+		// КОРРЕКТИРУЕМ РЕЙТИНГ ДАТОЙ ПУБЛИКАЦИИ
+		arr = Rate_With_Date(arr);
+
 		arr.sort(function(a,b){
 		var fielda=(+a[sortstr])
 		var fieldb=(+b[sortstr])
@@ -95,13 +126,30 @@ gfeedfetcher._sortarray=function(arr, sortstr){
 }
 
 gfeedfetcher.prototype._fetch_data_as_array=function(result, ddlabel){	
+
+	
+
 	var thisfeed=(!result.error)? result.feed.entries : "" //get all feed entries as a JSON array or "" if failed
 	if (thisfeed==""){ //if error has occured fetching feed
 		alert("Some blog posts could not be loaded: "+result.error.message)
 	}
+	
+
+	// поиск  максимальной и минимальной даты
+	for (var i=0; i<thisfeed.length; i++){ //For each entry within feed
+		
+		 DateStr = result.feed.entries[i].publishedDate; 
+		 CurDate = new Date(DateStr); 
+		 
+		 // поиск max и  min
+		 if (CurDate > MaxDate){ MaxDate = new Date (CurDate.toString()); }
+		 if (CurDate < MinDate){ MinDate = new Date (CurDate.toString()); }
+	}
+
 	for (var i=0; i<thisfeed.length; i++){ //For each entry within feed
 		result.feed.entries[i].ddlabel=ddlabel //extend it with a "ddlabel" property
-		result.feed.entries[i].rates=(this.feedRates[this.feedlabels.indexOf(ddlabel)])  // Рейтинг сайта 
+
+		result.feed.entries[i].rates=(this.feedRates[this.feedlabels.indexOf(ddlabel)])  // Рейтинг сайта   
 	}
 	this.feeds=this.feeds.concat(thisfeed) //add entry to array holding all feed entries
 	this._signaldownloadcomplete() //signal the retrieval of this feed as complete (and move on to next one if defined)
@@ -113,14 +161,14 @@ gfeedfetcher.prototype._signaldownloadcomplete=function(){
 		this._displayresult(this.feeds) //display results
 }
 
-// '<span class="labelfield">['+this.feeds[i].ddlabel+']</span>'    <img src="img/'+this.feeds[i].ddlabel+'alt="Source">
+
 gfeedfetcher.prototype._displayresult=function(feeds){
 	var rssoutput=(this.itemcontainer=="<li>")? "<ul>\n" : ""
-	gfeedfetcher._sortarray(feeds, this.sortstring)				// CОРТИРОВКА
+	gfeedfetcher._sortarray(feeds, this.sortstring)				// CОРТИРОВКА перед показом
 	for (var i=0; i<feeds.length; i++){
 		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"+ " &nbsp; " 
 		var itemlabel=/label/i.test(this.showoptions)? ' ': " "
-		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating  datefield">'+(this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])+'</span>' // вывод рейтинга сайта
+		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating  datefield">'+ Math.floor(feeds[i].rates*100)+'</span>' // вывод рейтинга сайта  был такой (this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])
 		var itemdescription=/description/i.test(this.showoptions)? "<br />"+feeds[i].content : /snippet/i.test(this.showoptions)? "<br />"+feeds[i].contentSnippet  : ""
 		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("<", "</") + "\n\n"
 	}
