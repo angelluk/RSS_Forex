@@ -70,23 +70,29 @@ code{ color: red;}
 
 .rating{
 
+	color:#2a6496;	
 	float: right;
 	font-size: 12px;
+	font-weight: bolder;
 }
 
 body{
 	
-	background: #DBE3DC url("../img/sos.png");
-	
+	background: #8099D9 url("../img/ForexFon.png") repeat-x;
+
 }
 
 
  h1{
+ 	
 	margin-top: 30px;
 	margin-bottom: 7px;
-	color:#555;
+	color:#000;
+	
+	font-weight: bolder;
 	font-size: 15px;
 	text-align: left;
+	text-shadow: 1px 1px 5px #F8F8F8;
 	
 }
 
@@ -119,9 +125,9 @@ h1 img:hover{
  }
 
 .navbar-collapse{
-	box-shadow: 0px 3px 10px #BEBEBE;
-	-webkit box-shadow:0px 3px 10px #BEBEBE;
-	-moz-box-shadow: 0px 3px 10px #888888;
+	box-shadow: 0px 3px 10px #000;
+	-webkit box-shadow:0px 3px 10px #000;
+	-moz-box-shadow: 0px 3px 10px #000;
 }
 
 .navbar-default .navbar-brand {
@@ -169,5 +175,5 @@ h1 img:hover{
 
 .hiddeElement{
 
-	visibility: hidden;
+	visibility : hidden;
 }

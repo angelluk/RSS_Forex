@@ -56,8 +56,8 @@
         <div class=" col-md-12 ">
           <h1>CAT FOREX  собирает самые актуальные новости валютного рынка на основании умного рейтинга. Подробнее ...<img src="img/close.png" alt="close"></h1>  
             
-             <input type="submit" value="Play" id="play"class="btn">
-
+            <!-- <input type="submit" value="Play" id="play"class="btn hiddeElement">
+            -->
              
              <!-- Modal -->
              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -85,7 +85,7 @@
                     
                     newsfeed.displayoptions("label  datetime ");
                     newsfeed.setentrycontainer("li");
-                    newsfeed.filterfeed(30, "rates");
+                    newsfeed.filterfeed(50, "rates");
                     newsfeed.init();
                     
                     setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
