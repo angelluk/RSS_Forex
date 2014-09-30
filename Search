@@ -32,13 +32,13 @@
         <div id="navbar-example" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">онлайн</a></li>
-                <li><a href="Search.html">ПОИСК</a></li>
-             
+                <li><a href="#">час</a></li>
+                <li><a href="#">день</a></li>
+                <li><a href="#">неделя</a></li>
             </ul>
-
-           
             <ul class="nav navbar-nav navbar-right">
-             
+              
+                             
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">CatForex <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -55,51 +55,24 @@
 
   
     <div class="container">
-      
 
+              
         <div class=" col-md-12 ">
-          <h1>CAT FOREX  собирает самые актуальные новости валютного рынка на основании умного рейтинга. Подробнее ...<img src="img/close.png" alt="close"></h1>  
-            
-            <!-- <input type="submit" value="Play" id="play"class="btn hiddeElement">
-            -->
-             
-             <!-- Modal -->
-             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                   <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Новость</h4>
-                   </div>
-                   <div class="modal-body"></div>
-                   <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                     </div>
-                 </div>
-               </div>
-             </div>
-                  
-                <gcse:searchresults  defaultToImageSearch="true"></gcse:searchresults>          
-
-                <div id="rssfeed-wrap" >
-                    <script type="text/javascript">
-                    var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_new")
-                    
-                    newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news","30");
-                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml","25"); 
-                    newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml","10"); 
-                    
-                    newsfeed.displayoptions("label  datetime ");
-                    newsfeed.setentrycontainer("li");
-                    newsfeed.filterfeed(50, "rates");
-                    newsfeed.init();
-                    
-                    setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
-
-                    </script>
-                    <p><a class="darklink" href="javascript:newsfeed.init()">Обновить</a></p>
-                    
-                </div>
+          <!-- Custom Google Search -->
+          <script>
+            (function() {
+              var cx = '017989062471091792953:kwpumpyzdy4';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                  '//www.google.com/cse/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+           <gcse:searchbox ></gcse:searchbox>
+          <gcse:searchbox enableAutoComplete="true"></gcse:searchbox>
              
         </div>
     </div>
@@ -203,7 +176,7 @@
 
            });
 
-
+           
 
           // аннимация случайная
           $("#play").click(function () {

@@ -177,3 +177,8 @@ h1 img:hover{
 
 	visibility : hidden;
 }
+
+.cse form.gsc-search-box, form.gsc-search-box{
+	width: 25%;
+
+}
