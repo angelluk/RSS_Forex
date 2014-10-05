@@ -3,7 +3,7 @@
 .datefield{ color:gray; font-size: 70%; text-align:left;}
 #rssfeeds a{ color: #303147;text-decoration: none;font-weight: bold;}
 #rssfeeds{
-	
+	min-height: 1000px;
 }
 #rssfeeds p{
  margin-bottom: 2px;
@@ -178,7 +178,7 @@ h1 img:hover{
 	visibility : hidden;
 }
 
-.cse form.gsc-search-box, form.gsc-search-box{
+.mySearch{
 	width: 25%;
 
 }

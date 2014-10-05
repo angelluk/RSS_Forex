@@ -31,7 +31,7 @@
         </div>
         <div id="navbar-example" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">онлайн</a></li>
+                <li class="active"><a href="#">Все</a></li>
                 <li><a href="Search.html">Поиск</a></li>
              
             </ul>
@@ -83,10 +83,10 @@
 
                 <div id="rssfeed-wrap" >
                     <script type="text/javascript">
-                    var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_new")
+                    var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_blank")
                     
                     newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news","30");
-                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml","25"); 
+                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml","15"); 
                     newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml","10"); 
                     
                     newsfeed.displayoptions("label  datetime ");
@@ -94,7 +94,7 @@
                     newsfeed.filterfeed(50, "rates");
                     newsfeed.init();
                     
-                    setInterval(function(){newsfeed.init()}, 600000); // вызов обновления раз в минуту
+                    setInterval(function(){newsfeed.init()}, 1800000); // вызов обновления раз в полчаса
 
                     </script>
                     <p><a class="darklink" href="javascript:newsfeed.init()">Обновить</a></p>
