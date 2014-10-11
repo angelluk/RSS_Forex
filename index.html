@@ -14,8 +14,7 @@
 
     <script  src="http://www.google.com/jsapi"></script>
     <script  src="js/gfeedfetcher.js"></script>
-       
-   
+    
   </head>
   <body>
 
@@ -35,7 +34,6 @@
                 <li><a href="Search.html">Поиск</a></li>
              
             </ul>
-
            
             <ul class="nav navbar-nav navbar-right">
              
@@ -52,10 +50,8 @@
               </ul>
         </div>
     </nav>
-
   
     <div class="container">
-      
 
         <div class=" col-md-12 ">
           <h1>CAT FOREX  собирает самые актуальные новости валютного рынка на основании умного рейтинга. Подробнее ...<img src="img/close.png" alt="close"></h1>  
@@ -83,12 +79,53 @@
 
                 <div id="rssfeed-wrap" >
                     <script type="text/javascript">
+                   
                     var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_blank")
                     
-                    newsfeed.addFeed("InstaForex.ico", "https://news.instaforex.com/ru/news","30");
-                    newsfeed.addFeed("ForexUA.png", "http://www.forexua.com/ru/analytic/ta.xml","15"); 
-                    newsfeed.addFeed("ForexPF.ico", "http://www.forexpf.ru/forex.xml","10"); 
-                    
+                   
+                    newsfeed.addFeed("all-currency.png", "http://all-currency.ru/news/rss.php","10"); 
+                    newsfeed.addFeed("forex4you.png", "http://blog.forex4you.org/feed/","10"); 
+                    newsfeed.addFeed("forexco.png", "http://www.forex.co/ru/rss/get/news","10"); 
+                    newsfeed.addFeed("forexite.png", " http://www.forexite.com/forex_news_rss.xml","10"); 
+                    newsfeed.addFeed("forexpf.png", " http://www.forexpf.ru/forex.xml","10"); 
+                    newsfeed.addFeed("forexpf.png", " http://www.forexpf.ru/econom.xml ","10"); 
+                    newsfeed.addFeed("ForexUA.png", " http://www.forexua.com/ru/analytic/ta.xml","10");
+                    newsfeed.addFeed("fxclub.png", " http://www.fxclub.org/rss/rubric73/","10");
+                    newsfeed.addFeed("fxclub.png", " http://www.fxclub.org/rss/sec1249.xml","10");
+                    newsfeed.addFeed("admiralmarkets.png", " http://feeds.feedburner.com/forextrade/techanalysis?format=xml","10"); 
+                    newsfeed.addFeed("admiralmarkets.png", " http://feeds.feedburner.com/admiralmarkets/market_focus?format=xml","10"); 
+                    newsfeed.addFeed("admiralmarkets.png", " http://feeds.feedburner.com/forextrade/waveanalysis?format=xml","10");    
+                    newsfeed.addFeed("alpari.png", " http://feeds.feedburner.com/alpari-ru-analytics?format=xml","10"); 
+                    newsfeed.addFeed("fxmag.png", "http://www.fxmag.ru/rss/rss_review.xml","10");  
+                    newsfeed.addFeed("fxstreet.png", "http://www.fxstreet.ru.com/rss/news/forex-news/","10"); 
+                    newsfeed.addFeed("gkfx.png", "https://www.gkfx.ru/analytics.rss","10"); 
+                    newsfeed.addFeed("instaforex.png", "https://news.instaforex.com/ru/analytics","10");
+                    newsfeed.addFeed("instaforex.png", "https://news.instaforex.com/ru/news","10");
+                    newsfeed.addFeed("investfunds.png", "http://investfunds.kz/rss/news/forex/","10");
+                    newsfeed.addFeed("investing.png", "http://ru.investing.com/rss/news_1.rss","10");
+                    newsfeed.addFeed("mt5.png", "http://news.mt5.com/ru/news/rss","10");
+                    newsfeed.addFeed("novosti.investaz.png", "http://novosti.investaz.ru/feed/","10");
+                    newsfeed.addFeed("panteon-finance.png", " https://panteon-finance.com/rss/","10");
+                    newsfeed.addFeed("radioforex.png", " http://radioforex.ru/rss.xml","10");
+                    newsfeed.addFeed("rbc.png", "http://static.feed.rbc.ru/rbc/internal/rss.rbc.ru/quote.ru/mainnews.rss","10");
+                    newsfeed.addFeed("ria.png", " http://ria.ru/export/rss2/money/index.xml","10");
+                    newsfeed.addFeed("rosinvest.png", " http://rosinvest.com/newsrubrik_13.rss","10"); 
+                    newsfeed.addFeed("rusbanks.png", " http://www.rusbanks.info/news/rss/","10"); 
+                    newsfeed.addFeed("rvdmarkets.png", " https://www.rvdmarkets.com/ru/rss/markets-news ","10"); 
+                    newsfeed.addFeed("rvdmarkets.png", "https://www.rvdmarkets.com/ru/rss/analytics-recommendations","10");  
+                    newsfeed.addFeed("stock-maks.png", "http://stock-maks.com/ta/rss.xml","10"); 
+                    newsfeed.addFeed("stock-maks.png", "http://stock-maks.com/op/rss.xml","10"); 
+                    newsfeed.addFeed("teletrade.png", "http://www.teletrade.com.ua/rss/analytics/news/currency","10"); 
+                    newsfeed.addFeed("teletrade.png", "http://www.teletrade.com.ua/rss/analytics/reviews/currency","10"); 
+                    newsfeed.addFeed("teletrade.png", "http://www.teletrade.com.ua/rss/analytics/technical_analysis/all","10"); 
+                    newsfeed.addFeed("teletrade.png", "http://www.teletrade.com.ua/rss/analytics/blogs/all","10");
+                    newsfeed.addFeed("traderblog.png", "http://traderblog.biz/feed/","10");
+                    newsfeed.addFeed("tradersroom.png", "http://tradersroom.ru/translation?format=feed&type=rss","10");
+                    newsfeed.addFeed("traders-union.png", "https://traders-union.ru/brokers-analytics/rss/","10");
+                    newsfeed.addFeed("traders-union.png", "https://traders-union.ru/news/forex/rss/","10");  
+                    newsfeed.addFeed("vestifinance.png", "http://www.vestifinance.ru/yandex.xml","10"); 
+
+
                     newsfeed.displayoptions("label  datetime ");
                     newsfeed.setentrycontainer("li");
                     newsfeed.filterfeed(50, "rates");
@@ -203,23 +240,29 @@
 
            });
 
-
-
           // аннимация случайная
           $("#play").click(function () {
             
                setInterval(function(){Play()}, 6000); // вызов обновления раз в минуту
-
                       
            });
 
-         
         });
 
+    </script>
 
-    
+    <!-- =============================Google Analytics=======================================-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-30528080-3', 'auto');
+      ga('send', 'pageview');
 
     </script>
+    <!-- =====================================================================================-->
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

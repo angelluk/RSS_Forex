@@ -43,7 +43,7 @@ code{ color: red;}
 #rssfeed-wrap  li{ /* CSS for date field of the RSS feed with id="example1" */
 	text-align:left;
 	margin: 0;
-	padding: 10px;
+	padding: 9px 10px;
 	position: relative;
 	min-height: 40px;
 	list-style-type: none;
@@ -76,9 +76,15 @@ code{ color: red;}
 	font-weight: bolder;
 }
 
+.placeholder{
+	
+	width: 50px;
+	
+}
+
 body{
 	
-	background: #8099D9 url("../img/ForexFon.png") repeat-x;
+	background: #8099D9 url("../img/satinweave.png") 
 
 }
 
@@ -178,7 +184,3 @@ h1 img:hover{
 	visibility : hidden;
 }
 
-.mySearch{
-	width: 25%;
-
-}

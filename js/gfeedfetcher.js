@@ -51,7 +51,7 @@ this.itemcontainer="<"+containerstr.toLowerCase()+">"
 gfeedfetcher.prototype.init=function(){
 	this.feedsfetched=0 //reset number of feeds fetched to 0 (in case init() is called more than once)
 	this.feeds=[] //reset feeds[] array to empty (in case init() is called more than once)
-	this.feedcontainer.innerHTML='<p><img src="'+gfeedfetcher_loading_image+'" /> Обновление ...</p>'
+	this.feedcontainer.innerHTML=' <br><p><img src="'+gfeedfetcher_loading_image+'" /> Обновление ...</p>'
 	var displayer=this
 	for (var i=0; i<this.feedurls.length; i++){ //loop through the specified RSS feeds' URLs
 		var feedpointer=new google.feeds.Feed(this.feedurls[i]) //create new instance of Google Ajax Feed API
@@ -86,7 +86,12 @@ function Rate_With_Date(feedArr){
 			feedStr = Curfeed.publishedDate; 		
 		    feedDate = new Date(feedStr); 			// текщая дата
 
+
 		    AjustRate = (feedDate - MinDate) / (MaxDate - MinDate);  // КОЭФФИЦИЕНТ НОВИЗНЫ (0,1)
+
+		    var CurrDateTime = new Date();
+
+		    if(feedDate>=CurrDateTime)  AjustRate = 0; // наказываем манипуляцию датой
 
 		    feedArr[j].rates  =  (+Curfeed.rates) * AjustRate;		// Коррекция рейтинга на  коэф. новизны	
 
@@ -168,7 +173,7 @@ gfeedfetcher.prototype._displayresult=function(feeds){
 	for (var i=0; i<feeds.length; i++){
 		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"+ " &nbsp; " 
 		var itemlabel=/label/i.test(this.showoptions)? ' ': " "
-		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) + '<span class="rating  datefield">'+ Math.floor(feeds[i].rates*100)+'</span>' // вывод рейтинга сайта  был такой (this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])
+		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) +'<span class="placeholder">&nbsp;&nbsp;&nbsp;</span>'+ '<span class="rating  datefield">'+ Math.floor(feeds[i].rates*100)+'</span>' // вывод рейтинга сайта  был такой (this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])
 		var itemdescription=/description/i.test(this.showoptions)? "<br />"+feeds[i].content : /snippet/i.test(this.showoptions)? "<br />"+feeds[i].contentSnippet  : ""
 		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("<", "</") + "\n\n"
 	}
