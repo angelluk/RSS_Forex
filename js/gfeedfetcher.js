@@ -9,7 +9,7 @@ var CurDate,MaxDate,MinDate,DateStr;				// дата публикации тек�
 MaxDate = new Date();		// текущая дата
 MinDate = new Date();
 
-var gfeedfetcher_loading_image="img/Preloader.gif" //Full URL to "loading" image. No need to config after this line!!
+var gfeedfetcher_loading_image="img/siteView/Preloader.gif" //Full URL to "loading" image. No need to config after this line!!
 
 google.load("feeds", "1") //Load Google Ajax Feed API (version 1)
 
@@ -136,7 +136,7 @@ gfeedfetcher.prototype._fetch_data_as_array=function(result, ddlabel){
 
 	var thisfeed=(!result.error)? result.feed.entries : "" //get all feed entries as a JSON array or "" if failed
 	if (thisfeed==""){ //if error has occured fetching feed
-		alert("Some blog posts could not be loaded: "+result.error.message)
+		alert("Some blog posts could not be loaded: ") // +result.error.message
 	}
 	
 
