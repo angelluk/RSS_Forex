@@ -57,7 +57,6 @@ code{ color: red;}
 }
 
 
-
 #rssfeed-wrap  li a:hover{
 	text-decoration: underline;
 }
@@ -86,7 +85,6 @@ body{
 
 }
 
-
  h1{
  	
 	margin-top: 30px;
@@ -112,8 +110,8 @@ h1 img:hover{
 
 .navbar-brand{
 	padding: 6px 0 0 0;
-	margin-left: 199px;
-	margin-right: 100px;
+	margin-left: 94%;
+	margin-right: 0px;
 }
 
 .container{
@@ -182,3 +180,23 @@ h1 img:hover{
 	visibility : hidden;
 }
 
+.navbar-nav {
+	float: right;
+	margin-right: 15%;
+}
+
+/*------------------------------ Media queryes ---------------------*/
+@media only  screen and (max-width: 768px){
+
+	 h1	 {
+		display:  none;
+	 }
+
+	.navbar-brand {
+		margin-left: 5%;
+	}
+
+	#rssfeed-wrap {
+		margin-top: 20px;
+	}
+}

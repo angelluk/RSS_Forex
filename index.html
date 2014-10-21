@@ -7,7 +7,7 @@
     <meta name='yandex-verification' content='633ab3656de589a1' />
     <title>Forex новости и аналитика</title>
 
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/siteView/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     
@@ -22,18 +22,19 @@
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navbar-header">
+            <a class="navbar-brand"  href="index.html"><img src="img/siteView/Logo.png"  class="logo" alt="logo"></a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-example">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="img/siteView/Logo.png" alt="logo"></a>
+            
         </div>
         <div id="navbar-example" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Все</a></li>
-                <li><a href="Search.html">Поиск</a></li>
+                <li><a href="Search.html">&nbsp<img src="img/siteView/t-search.png" height="18" weigth="18" >&nbsp</a></li>
              
             </ul>
            <!--
@@ -82,13 +83,42 @@
                 <div id="rssfeed-wrap" >
             
              <script type="text/javascript">
+
+             function ReqAJAX(){
+
+                 $.ajax({
+                       
+                       type: "GET",
+                       url: "ajax/Source.json",
+                       dataType: "json",
+                       async:false,
+                       
+                       success: function( json ) {
+                          json.rssfeeds.forEach(function(element) {
+                            // добавляем источник RSS
+                            newsfeed.addFeed(element.id, element.url,element.rate); 
+                          });
+
+                           localStorage.setItem('RSS', JSON.stringify(json));  //  пишем в HTML5 local store
+                       },
+
+                       error: function( xhr, status, errorThrown ) {
+                              console.log( "Error: " + errorThrown );
+                              console.log( "Status: " + status );
+                              console.dir( xhr );
+                          }
+                   });
+
+                 window.location.assign("http://catforex.com/index.html"); // перезагружаемся 
+             
+              };
                    
               var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_blank")
                    
 
               //  первый раз  если нет сторадж загружаемся с сервера localStorage.getItem('RSS') !=null
 
-             if (  localStorage.getItem('RSS') == "undefined" )
+             if ((  localStorage.getItem('RSS') == "undefined" ) || (localStorage.getItem('RSS') == null))
              {
 
                             //---------------------------------------------------------------------------------------------
@@ -133,30 +163,8 @@
                                   newsfeed.addFeed("favicons/traders-union.png", "https://traders-union.ru/news/forex/rss/","10");  
                                   newsfeed.addFeed("favicons/vestifinance.png", "http://www.vestifinance.ru/yandex.xml","10"); 
             */
-            $.ajax({
-                  
-                  type: "GET",
-                  url: "ajax/Source.json",
-                  dataType: "json",
-                  async:false,
-                  
-                  success: function( json ) {
-                     json.rssfeeds.forEach(function(element) {
-                       // добавляем источник RSS
-                       newsfeed.addFeed(element.id, element.url,element.rate); 
-                     });
-
-                      localStorage.setItem('RSS', JSON.stringify(json));  //  пишем в HTML5 local store
-                  },
-
-                  error: function( xhr, status, errorThrown ) {
-                         console.log( "Error: " + errorThrown );
-                         console.log( "Status: " + status );
-                         console.dir( xhr );
-                     }
-              });
            
-
+               ReqAJAX(); //  запрос JSON
              } 
              else
              {
@@ -182,6 +190,9 @@
                     
                 </div>
              <button type="button" onclick="javascript:newsfeed.init()" class="btn btn-default">Обновить</button>
+
+             <button type="button" onclick="javascript:ReqAJAX()" class="btn btn-default">Обнулить</button>
+
         </div>
     </div>
 
@@ -226,7 +237,7 @@
      $(document).ready(function(){
 
         //---------------------------------- Rating click event ---------------------------------------
-        var Voterate = 0.1;   // СИЛА КЛИКА В РЕЙТИНГЕ
+        var Voterate = 0.001;   // СИЛА КЛИКА В РЕЙТИНГЕ
 
         $( "body" ).on( "click", "li", function( event ) {
             
@@ -240,7 +251,6 @@
 
             // ЧИТАЕМ
              OBJ = JSON.parse(localStorage.getItem('RSS'));  // читаем из  HTML5 local store
-
 
              OBJ.rssfeeds.forEach(function(element) {    // увеличим рейтинг
                     
@@ -256,7 +266,6 @@
             localStorage.setItem('RSS', JSON.stringify(OBJ));  //  пишем в HTML5 local store
 
           });  
-
 
           //---------------------------------------------------------------------------------------------
         
