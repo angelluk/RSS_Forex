@@ -32,6 +32,8 @@ code{ color: red;}
 
 #rssfeed-wrap  .datefield{ /* CSS for date field of the RSS feed with id="example1" */
 	text-align:left;
+	float: right;
+	margin-right: 20px;
 }
 
 #rssfeed-wrap  ul{
@@ -63,6 +65,12 @@ code{ color: red;}
 
 #rssfeed-wrap  li a{
 	margin-left: 5px;
+	display: inline-block;
+	max-width: 65%;
+}
+
+#rssfeed-wrap  li img{
+	vertical-align: top;
 }
 
 .rating{
@@ -199,4 +207,19 @@ h1 img:hover{
 	#rssfeed-wrap {
 		margin-top: 20px;
 	}
+	
+
+	#rssfeed-wrap  .datefield{
+
+	   float: inherit;
+
+	}
+  
+	#rssfeed-wrap .rating{
+
+	   float: right;
+
+	}
+
+
 }

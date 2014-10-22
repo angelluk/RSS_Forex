@@ -173,7 +173,7 @@ gfeedfetcher.prototype._displayresult=function(feeds){
 	for (var i=0; i<feeds.length; i++){
 		var itemtitle=" <img src=\"img/"+this.feeds[i].ddlabel+"\"alt=\"Source\"> "+ "<a rel=\"nofollow\" href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\">" + feeds[i].title + "</a>"+ " &nbsp; " 
 		var itemlabel=/label/i.test(this.showoptions)? ' ': " "
-		var itemdate= " &nbsp; &nbsp;"  + gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions) +'<span class="placeholder">&nbsp;&nbsp;&nbsp;</span>'+ '<span class="rating  datefield">'+ Math.floor(feeds[i].rates*100)+'</span>' // вывод рейтинга сайта  был такой (this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])
+		var itemdate=  '<span class="rating  datefield">'+ Math.floor(feeds[i].rates*100)+'</span>' +  gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions)  // вывод рейтинга сайта  был такой (this.feedRates[this.feedlabels.indexOf(this.feeds[i].ddlabel)])
 		var itemdescription=/description/i.test(this.showoptions)? "<br />"+feeds[i].content : /snippet/i.test(this.showoptions)? "<br />"+feeds[i].contentSnippet  : ""
 		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("<", "</") + "\n\n"
 	}
