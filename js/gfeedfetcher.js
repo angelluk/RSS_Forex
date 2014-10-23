@@ -90,8 +90,10 @@ function Rate_With_Date(feedArr){
 		    AjustRate = (feedDate - MinDate) / (MaxDate - MinDate);  // КОЭФФИЦИЕНТ НОВИЗНЫ (0,1)
 
 		    var CurrDateTime = new Date();
+		    var DeltaTime = ((CurrDateTime-feedDate)/3600000);
 
 		    if(feedDate>=CurrDateTime)  AjustRate = 0; // наказываем манипуляцию датой
+		    if((feedDate<CurrDateTime)&& (DeltaTime>24))  AjustRate = 0; // наказываем новости старее 24 часов
 
 		    feedArr[j].rates  =  (+Curfeed.rates) * AjustRate;		// Коррекция рейтинга на  коэф. новизны	
 
