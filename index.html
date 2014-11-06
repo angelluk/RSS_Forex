@@ -21,6 +21,7 @@
   <body>
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+       
         <div class="navbar-header">
             <a class="navbar-brand"  href="index.html"><img src="img/siteView/Logo.png"  class="logo" alt="logo"></a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-example">
@@ -31,10 +32,17 @@
             </button>
             
         </div>
+
         <div id="navbar-example" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Все</a></li>
-                <li><a href="Search.html">&nbsp<img src="img/siteView/t-search.png" height="18" weigth="18" >&nbsp</a></li>
+                     
+               <li id="ResetRate" data-toggle="tooltip" data-placement="bottom" title="Сбросить личные предпочтения"><a href="#">&nbsp<img onclick="javascript:ReqAJAX()"src="img/siteView/like.png" height="20" weigth="20" >&nbsp</a></li>
+              
+                <li data-toggle="tooltip" data-placement="bottom" title="Обновить"><a href="#">&nbsp<img onclick="javascript:newsfeed.init()" src="img/siteView/refresh.png" height="20" weigth="20" >&nbsp</a></li>
+               
+                <li class="active" data-toggle="tooltip" data-placement="bottom" title="Новости"><a href="#">Все</a></li>
+               
+                <li data-toggle="tooltip" data-placement="bottom" title="Поиск по новостям"><a href="Search.html">&nbsp<img src="img/siteView/t-search.png" height="18" weigth="18" >&nbsp</a></li>
              
             </ul>
            <!--
@@ -78,13 +86,15 @@
                </div>
              </div>
                   
-                <gcse:searchresults  defaultToImageSearch="true"></gcse:searchresults>          
-
-                <div id="rssfeed-wrap" >
+        <div id="rssfeed-wrap" >
             
-             <script type="text/javascript">
+          <script type="text/javascript">
 
              function ReqAJAX(){
+
+               if ( $("#ResetRate").hasClass( "local" ) ) { // клас локальных настроек убрать
+                    $("#ResetRate").removeClass("local");
+                }
 
                  $.ajax({
                        
@@ -115,56 +125,11 @@
                    
               var newsfeed=new gfeedfetcher("rssfeeds", "rssfeedsclass", "_blank")
                    
-
               //  первый раз  если нет сторадж загружаемся с сервера localStorage.getItem('RSS') !=null
 
              if ((  localStorage.getItem('RSS') == "undefined" ) || (localStorage.getItem('RSS') == null))
              {
-
-                            //---------------------------------------------------------------------------------------------
-                           /*      newsfeed.addFeed("favicons/all-currency.png", "http://all-currency.ru/news/rss.php","10"); 
-                                  newsfeed.addFeed("favicons/forex4you.png", "http://blog.forex4you.org/feed/","10"); 
-                                  newsfeed.addFeed("favicons/forexco.png", "http://www.forex.co/ru/rss/get/news","10"); 
-                                  newsfeed.addFeed("favicons/forexite.png", " http://www.forexite.com/forex_news_rss.xml","10"); 
-                                  newsfeed.addFeed("favicons/forexpf.png", " http://www.forexpf.ru/forex.xml","10"); 
-                                  newsfeed.addFeed("favicons/forexpf.png", " http://www.forexpf.ru/econom.xml ","10"); 
-                                  newsfeed.addFeed("favicons/ForexUA.png", " http://www.forexua.com/ru/analytic/ta.xml","10");
-                                  newsfeed.addFeed("favicons/fxclub.png", " http://www.fxclub.org/rss/rubric73/","10");
-                                  newsfeed.addFeed("favicons/fxclub.png", " http://www.fxclub.org/rss/sec1249.xml","10");
-                                  newsfeed.addFeed("favicons/admiralmarkets.png", " http://feeds.feedburner.com/forextrade/techanalysis?format=xml","10"); 
-                                  newsfeed.addFeed("favicons/admiralmarkets.png", " http://feeds.feedburner.com/admiralmarkets/market_focus?format=xml","10"); 
-                                  newsfeed.addFeed("favicons/admiralmarkets.png", " http://feeds.feedburner.com/forextrade/waveanalysis?format=xml","10");    
-                                  newsfeed.addFeed("favicons/alpari.png", " http://feeds.feedburner.com/alpari-ru-analytics?format=xml","10"); 
-                                  newsfeed.addFeed("favicons/fxstreet.png", "http://www.fxstreet.ru.com/rss/news/forex-news/","10"); 
-                                  newsfeed.addFeed("favicons/gkfx.png", "https://www.gkfx.ru/analytics.rss","10"); 
-                                  newsfeed.addFeed("favicons/instaforex.png", "https://news.instaforex.com/ru/analytics","10");
-                                  newsfeed.addFeed("favicons/instaforex.png", "https://news.instaforex.com/ru/news","10");
-                                  newsfeed.addFeed("favicons/investfunds.png", "http://investfunds.kz/rss/news/forex/","10");
-                                  newsfeed.addFeed("favicons/investing.png", "http://ru.investing.com/rss/news_1.rss","10");
-                                  newsfeed.addFeed("favicons/mt5.png", "http://news.mt5.com/ru/news/rss","10");
-                                  newsfeed.addFeed("favicons/novosti.investaz.png", "http://novosti.investaz.ru/feed/","10");
-                                  newsfeed.addFeed("favicons/panteon-finance.png", " https://panteon-finance.com/rss/","10");
-                                  newsfeed.addFeed("favicons/radioforex.png", " http://radioforex.ru/rss.xml","10");
-                                  newsfeed.addFeed("favicons/rbc.png", "http://static.feed.rbc.ru/rbc/internal/rss.rbc.ru/quote.ru/mainnews.rss","10");
-                                  newsfeed.addFeed("favicons/ria.png", " http://ria.ru/export/rss2/money/index.xml","10");
-                                  newsfeed.addFeed("favicons/rosinvest.png", " http://rosinvest.com/newsrubrik_13.rss","10"); 
-                                  newsfeed.addFeed("favicons/rusbanks.png", " http://www.rusbanks.info/news/rss/","10"); 
-                                  newsfeed.addFeed("favicons/rvdmarkets.png", " https://www.rvdmarkets.com/ru/rss/markets-news ","10"); 
-                                  newsfeed.addFeed("favicons/rvdmarkets.png", "https://www.rvdmarkets.com/ru/rss/analytics-recommendations","10");  
-                                  newsfeed.addFeed("favicons/stock-maks.png", "http://stock-maks.com/ta/rss.xml","10"); 
-                                  newsfeed.addFeed("favicons/stock-maks.png", "http://stock-maks.com/op/rss.xml","10"); 
-                                  newsfeed.addFeed("favicons/teletrade.png", "http://www.teletrade.com.ua/rss/analytics/news/currency","10"); 
-                                  newsfeed.addFeed("favicons/teletrade.png", "http://www.teletrade.com.ua/rss/analytics/reviews/currency","10"); 
-                                  newsfeed.addFeed("favicons/teletrade.png", "http://www.teletrade.com.ua/rss/analytics/technical_analysis/all","10"); 
-                                  newsfeed.addFeed("favicons/teletrade.png", "http://www.teletrade.com.ua/rss/analytics/blogs/all","10");
-                                  newsfeed.addFeed("favicons/traderblog.png", "http://traderblog.biz/feed/","10");
-                                  newsfeed.addFeed("favicons/tradersroom.png", "http://tradersroom.ru/translation?format=feed&type=rss","10");
-                                  newsfeed.addFeed("favicons/traders-union.png", "https://traders-union.ru/brokers-analytics/rss/","10");
-                                  newsfeed.addFeed("favicons/traders-union.png", "https://traders-union.ru/news/forex/rss/","10");  
-                                  newsfeed.addFeed("favicons/vestifinance.png", "http://www.vestifinance.ru/yandex.xml","10"); 
-            */
-           
-               ReqAJAX(); //  запрос JSON
+                 ReqAJAX(); //  запрос JSON
              } 
              else
              {
@@ -175,8 +140,7 @@
                     
                       newsfeed.addFeed(element.id, element.url,element.rate); 
                  });
-             }
-
+              }
 
                     newsfeed.displayoptions("label  datetime ");
                     newsfeed.setentrycontainer("li");
@@ -185,14 +149,14 @@
                     
                     setInterval(function(){newsfeed.init()}, 1800000); // вызов обновления раз в полчаса
 
-                    </script>
+          </script>
                    
                     
-                </div>
-             <button type="button" onclick="javascript:newsfeed.init()" class="btn btn-default">Обновить</button>
+     </div>
+      <!--       <button type="button" onclick="javascript:newsfeed.init()" class="btn btn-default">Обновить</button>
 
              <button type="button" onclick="javascript:ReqAJAX()" class="btn btn-default">Обнулить</button>
-
+      -->
         </div>
     </div>
 
@@ -236,6 +200,18 @@
 
      $(document).ready(function(){
 
+         if ((  localStorage.getItem('RSS') == "undefined" ) || (localStorage.getItem('RSS') == null))
+             {
+
+                if ( $("#ResetRate").hasClass( "local" ) ) { // клас локальных настроек убрать
+                    $("#ResetRate").removeClass("local");
+                }
+             }  
+
+            else
+            {
+               $("#ResetRate").addClass("local"); // отобразить классом локальные  настройки
+            }
         //---------------------------------- Rating click event ---------------------------------------
         var Voterate = 10.0;   // СИЛА КЛИКА В РЕЙТИНГЕ
 
@@ -335,21 +311,12 @@
                       
            });
 
+          $("#navbar-example li").tooltip();  
+
      });
 
     </script>
 
-    <!-- =============================Google Analytics=======================================-->
-    <script>
-     /* (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-30528080-3', 'auto');
-      ga('send', 'pageview');
-*/
-    </script>
     <!-- =====================================================================================-->
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

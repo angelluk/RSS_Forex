@@ -193,6 +193,18 @@ h1 img:hover{
 	margin-right: 15%;
 }
 
+#ResetRate{
+
+}
+
+.local{
+	background-color: #E8E8E8;
+}
+
+
+.navbar-nav li:hover{
+	background-color: #EFEFEF;
+}
 /*------------------------------ Media queryes ---------------------*/
 @media only  screen and (max-width: 768px){
 

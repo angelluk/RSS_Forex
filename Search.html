@@ -31,8 +31,10 @@
         </div>
         <div id="navbar-example" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ><a href="index.html">Все</a></li>
-                <li class="active"><a href="#">&nbsp<img src="img/siteView/t-search.png" height="18" weigth="18" >&nbsp</a></li>
+               
+                <li data-toggle="tooltip" data-placement="bottom" title="Новости"><a href="index.html">Все</a></li>
+                
+                <li class="active" data-toggle="tooltip" data-placement="bottom" title="Поиск по новостям"><a href="#">&nbsp<img src="img/siteView/t-search.png" height="18" weigth="18" >&nbsp</a></li>
              
             </ul>
            
@@ -53,34 +55,40 @@
         </div>
     </nav>
   
-
-  
     <div class="container">
 
       <div class=" mySearch  ">        
       
-          <script>
-            (function() {
-              var cx = '017989062471091792953:ixon9taufui';
-              var gcse = document.createElement('script');
-              gcse.type = 'text/javascript';
-              gcse.async = true;
-              gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                  '//www.google.com/cse/cse.js?cx=' + cx;
-              var s = document.getElementsByTagName('script')[0];
-              s.parentNode.insertBefore(gcse, s);
-            })();
-          </script>
+           <script>
+             (function() {
+               var cx = '017989062471091792953:kwpumpyzdy4';
+               var gcse = document.createElement('script');
+               gcse.type = 'text/javascript';
+               gcse.async = true;
+               gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                   '//www.google.com/cse/cse.js?cx=' + cx;
+               var s = document.getElementsByTagName('script')[0];
+               s.parentNode.insertBefore(gcse, s);
+             })();
+           </script>
+         
           <br>
           <br>
           <gcse:search></gcse:search>
-
 
         </div>  
              
     </div>
 
-     
+     <script>
+
+     $(document).ready(function(){
+       $("#navbar-example li").tooltip();   // запустить  tooltip в Bootstrap
+
+     });
+
+
+     </script>
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
